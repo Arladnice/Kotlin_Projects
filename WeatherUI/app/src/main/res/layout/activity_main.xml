@@ -11,7 +11,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ПОГОДА"
+        android:text="@string/Weather1"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text1"
@@ -22,7 +22,7 @@
         android:layout_below="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="САНКТ-ПЕТЕРБУРГ"
+        android:text="@string/City1"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
@@ -34,7 +34,7 @@
         android:layout_below="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="РОССИЯ"
+        android:text="@string/Country1"
         android:textSize="16sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text1"
@@ -45,7 +45,7 @@
         android:layout_below="@+id/country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="СРЕДА 9:11"
+        android:text="@string/Time"
         android:textSize="16sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text1"
@@ -59,16 +59,16 @@
         android:layout_marginTop="10dp"
         android:src="@drawable/sun"
         android:padding="10dp"
-        />
+        android:contentDescription="TODO" />
     <TextView
         android:id="@+id/deg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="18°С"
+        android:text="@string/Degree"
         android:layout_below="@+id/image"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text1"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         />
@@ -76,11 +76,11 @@
         android:id="@+id/forecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="СОЛНЕЧНО"
+        android:text="@string/Sun"
         android:layout_below="@+id/deg"
         android:layout_centerHorizontal="true"
         android:textColor="@color/text1"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         />
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВЛАЖНОСТЬ"
+                android:text="@string/Humidity"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/text1"
@@ -113,12 +113,11 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_height="35dp"
-                android:src="@drawable/humidity"
-                />
+                android:src="@drawable/humidity"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="83%"
+                android:text="@string/Humidity2"
                 android:layout_marginTop="5dp"
                 android:textSize="16sp"
                 android:textColor="@color/text1"
@@ -133,7 +132,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВЕТРЕННО"
+                android:text="@string/Windy"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/text1"
@@ -148,7 +147,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3,1 м/с, СЗ"
+                android:text="@string/Windy2"
                 android:layout_marginTop="5dp"
                 android:textSize="16sp"
                 android:textColor="@color/text1"
@@ -163,7 +162,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ОЩУЩАЕТСЯ"
+                android:text="@string/Feel"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@color/text1"
@@ -178,7 +177,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18°С"
+                android:text="@string/Feel2"
                 android:layout_marginTop="5dp"
                 android:textSize="16sp"
                 android:textColor="@color/text1"
@@ -205,7 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="ОБЛАЧНО"
+                android:text="@string/Cloudy"
                 android:textColor="@color/text1"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -219,7 +218,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 am"
+                android:text="@string/Cloudy2"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/text1"
@@ -234,7 +233,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ДОЖДЬ"
+                android:text="@string/Rain1"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:textColor="@color/text1"
@@ -249,7 +248,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11 am"
+                android:text="@string/Rain2"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/text1"
@@ -264,7 +263,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ВЕТРЕННО"
+                android:text="@string/Windy2_1"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:textColor="@color/text1"
@@ -279,7 +278,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12 am"
+                android:text="@string/Windy2_2"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/text1"
@@ -294,7 +293,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ОБЛАЧНО"
+                android:text="@string/Cloudy"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:textColor="@color/text1"
@@ -309,7 +308,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 pm"
+                android:text="@string/Cloudy2_1"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/text1"
@@ -324,7 +323,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ДОЖДЬ"
+                android:text="@string/Rain3"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:textColor="@color/text1"
@@ -339,7 +338,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 pm"
+                android:text="@string/Rain4"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
                 android:textColor="@color/text1"
@@ -355,7 +354,7 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Тёмная тема"
+        android:text="@string/Black_theme"
         android:textStyle="bold"
         android:textSize="12sp"
         android:textColor="@color/text1"
