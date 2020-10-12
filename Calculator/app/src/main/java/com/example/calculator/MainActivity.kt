@@ -2,6 +2,7 @@ package com.example.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
 
     fun numberEvent(view: View) {
         if(isNewOperation){
@@ -73,4 +75,17 @@ class MainActivity : AppCompatActivity() {
         isNewOperation = true
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            putString("editText", editText.text.toString())
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        editText.text = savedInstanceState.getString("editText")
+    }
+
 }
+
