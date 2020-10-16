@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     var cols = listOf<String>(
         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
         ContactsContract.CommonDataKinds.Phone.NUMBER,
+        ContactsContract.CommonDataKinds.Phone.PHOTO_URI,
         ContactsContract.CommonDataKinds.Phone._ID
     ).toTypedArray()
 
@@ -42,13 +43,17 @@ class MainActivity : AppCompatActivity() {
 
         var from = listOf<String>(
             ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-            ContactsContract.CommonDataKinds.Phone.NUMBER
+            ContactsContract.CommonDataKinds.Phone.NUMBER,
+            ContactsContract.CommonDataKinds.Phone.PHOTO_URI
         ).toTypedArray()
 
         var to = intArrayOf(android.R.id.text1, android.R.id.text2)
 
         var rs = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
         cols, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+
+//        var photo_uri = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+//            cols, null, null, ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
 
         var adapter = SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, rs, from, to, 0)
 
