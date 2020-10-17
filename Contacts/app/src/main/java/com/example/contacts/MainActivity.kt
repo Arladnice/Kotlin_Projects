@@ -55,9 +55,13 @@ class MainActivity : AppCompatActivity() {
 //        var photo_uri = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
 //            cols, null, null, ContactsContract.CommonDataKinds.Phone.PHOTO_URI)
 
+//        Класс SimpleCursorAdapter позволяет назначать данные курсора, используемые источником данных, для компонентов
+
         var adapter = SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, rs, from, to, 0)
 
         listView1.adapter = adapter
+
+//        Следит за изменением текста юзером
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
