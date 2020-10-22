@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +47,10 @@ class MainActivity : AppCompatActivity() {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
             if(requestCode == 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 readContact()
+            else
+                btn_read_contact.setOnClickListener{
+                    Toast.makeText(applicationContext, "No permission for read contacts / Нет разрешения для чтения контактов", Toast.LENGTH_SHORT).show()
+                }
         }
 
         private fun readContact() {
@@ -56,19 +61,19 @@ class MainActivity : AppCompatActivity() {
                     while (contacts.moveToNext()){
                         val name = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
                         val number = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
-                        val obj = ContactDTO()
-                        obj.name = name
-                        obj.number = number
-
                         val photoUri = contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI))
+                        val obj = ContactDTO()
                         if(photoUri != null) {
                             obj.image = MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(photoUri))
                         }
+                        obj.name = name
+                        obj.number = number
 
                         contactList.add(obj)
                     }
 
                     contact_list.adapter = ContactAdapter(contactList, this)
+                    Toast.makeText(applicationContext, "Found ${contactList.size} contacts / Нашлось ${contactList.size} контактов1", Toast.LENGTH_SHORT).show()
                     contacts.close()
                 }
             }
