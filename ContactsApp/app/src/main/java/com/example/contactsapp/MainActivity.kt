@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     contact_list.adapter = ContactAdapter(contactList, this)
-                    Toast.makeText(applicationContext, "Found ${contactList.size} contacts / Нашлось ${contactList.size} контактов1", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Found ${contactList.size} contacts / Нашлось ${contactList.size} контактов", Toast.LENGTH_SHORT).show()
                     contacts.close()
                 }
             }
@@ -86,6 +86,10 @@ class MainActivity : AppCompatActivity() {
 
         override fun getItemCount(): Int {
             return list.size
+        }
+
+        init {
+
         }
 
         override fun onBindViewHolder(holder: ContactAdapter.ViewHolder, position: Int) {
@@ -102,7 +106,7 @@ class MainActivity : AppCompatActivity() {
             viewType: Int
         ): ContactAdapter.ViewHolder {
             return ViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.contact_child, parent, false)
+                LayoutInflater.from(context).inflate(R.layout.recycler_view_item, parent, false)
             )
         }
         class ViewHolder(v: View) : RecyclerView.ViewHolder(v){

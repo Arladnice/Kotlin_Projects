@@ -19,6 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_read_contact"
-        tools:listitem="@layout/contact_child" />
+        tools:listitem="@layout/recycler_view_item" />
 
 </RelativeLayout>
