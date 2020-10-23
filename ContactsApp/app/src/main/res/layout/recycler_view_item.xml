@@ -33,20 +33,34 @@
       android:id="@+id/tv_number"
       android:layout_width="285dp"
       android:layout_height="20dp"
-      tools:text="@tools:sample/lorem[4:10]"
-      app:layout_constraintBottom_toBottomOf="@+id/iv_image"
-      app:layout_constraintStart_toEndOf="@+id/iv_image"
       android:layout_marginStart="8dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:layout_marginEnd="8dp"
-      app:layout_constraintHorizontal_bias="0.050" />
+      app:layout_constraintBottom_toBottomOf="@+id/iv_image"
+      app:layout_constraintEnd_toStartOf="@+id/btn_call"
+      app:layout_constraintHorizontal_bias="0.050"
+      app:layout_constraintStart_toEndOf="@+id/iv_image"
+      tools:text="@tools:sample/lorem[4:10]" />
 
-  <TextView
-      android:id="@+id/textView3"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      tools:text="@tools:sample/date/hhmm"
-      app:layout_constraintTop_toTopOf="@+id/iv_image"
+  <Button
+      android:id="@+id/btn_call"
+      android:layout_width="50dp"
+      android:layout_height="20dp"
+      android:layout_marginTop="6dp"
+      android:layout_marginEnd="4dp"
+      android:text="call"
+      android:onClick="openContactByNumber"
+      android:background="@android:color/holo_green_dark"
       app:layout_constraintEnd_toEndOf="parent"
-      android:layout_marginEnd="8dp" />
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+      android:id="@+id/btn_sms"
+      android:layout_width="50dp"
+      android:layout_height="20dp"
+      android:layout_marginTop="32dp"
+      android:layout_marginEnd="4dp"
+      android:text="sms"
+      android:background="@android:color/holo_blue_bright"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

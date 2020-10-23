@@ -1,9 +1,9 @@
 package com.example.contactsapp
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.MediaStore
@@ -11,12 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.contact_child.view.*
+import kotlinx.android.synthetic.main.recycler_view_item.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +38,16 @@ class MainActivity : AppCompatActivity() {
                 Array(1) { android.Manifest.permission.READ_CONTACTS },
                 111
             )
-        } else
+        } else {
             readContact()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+
+        }
+        super.onSaveInstanceState(outState)
     }
 
         override fun onRequestPermissionsResult(
@@ -68,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                         }
                         obj.name = name
                         obj.number = number
-
                         contactList.add(obj)
                     }
 
@@ -78,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     class ContactAdapter(items: List<ContactDTO>, ctx: Context) :
         RecyclerView.Adapter<ContactAdapter.ViewHolder>() {
 
@@ -87,11 +98,6 @@ class MainActivity : AppCompatActivity() {
         override fun getItemCount(): Int {
             return list.size
         }
-
-        init {
-
-        }
-
         override fun onBindViewHolder(holder: ContactAdapter.ViewHolder, position: Int) {
             holder.name.text = list[position].name
             holder.number.text = list[position].number
@@ -113,6 +119,17 @@ class MainActivity : AppCompatActivity() {
             val name = v.tv_name!!
             val number = v.tv_number!!
             val image = v.iv_image!!
+            init {
+                itemView.setOnClickListener{
+                    var uri = Uri.parse("tel:"+number.text.toString())
+//                    startActivity(Intent(Intent.ACTION_DIAL, uri))
+                }
+            }
         }
+    }
+
+    fun openContactByNumber(view: View) {
+        var uri = Uri.parse("tel:"+tv_number.text.toString())
+        startActivity(Intent(Intent.ACTION_DIAL, uri))
     }
 }
