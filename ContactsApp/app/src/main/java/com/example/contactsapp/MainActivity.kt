@@ -45,11 +45,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.run {
-
+            readContact()
         }
         super.onSaveInstanceState(outState)
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        readContact()
+    }
         override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
