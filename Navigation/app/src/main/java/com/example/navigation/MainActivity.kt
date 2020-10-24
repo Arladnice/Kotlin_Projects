@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         val thirdFragment = ThirdFragment()
 
         setCurrentFragment(firstFragment)
-
+        
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.miHome -> setCurrentFragment(firstFragment)
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.flFragment, fragment)
+            addToBackStack(null)
             commit()
         }
 }
