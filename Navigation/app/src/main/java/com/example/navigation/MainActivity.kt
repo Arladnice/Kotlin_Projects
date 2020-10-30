@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         val thirdFragment = ThirdFragment()
 
         setCurrentFragment(firstFragment)
-        
+
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.miHome -> setCurrentFragment(firstFragment)
