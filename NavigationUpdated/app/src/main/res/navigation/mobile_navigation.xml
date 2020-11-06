@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/destination_home">
-
     <fragment
         android:id="@+id/destination_home"
         android:name="com.example.navigationupdated.HomeFragment"
-        android:label="Home"
+        android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/destination_camera"
         android:name="com.example.navigationupdated.CameraFragment"
-        android:label="Camera"
-        tools:layout="@layout/fragment_camera">
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" >
         <action
             android:id="@+id/next_action"
             app:destination="@id/destination_photos" />
@@ -22,19 +21,19 @@
     <fragment
         android:id="@+id/destination_photos"
         android:name="com.example.navigationupdated.PhotosFragment"
-        android:label="Photos"
-        tools:layout="@layout/fragment_photos">
+        android:label="fragment_photos"
+        tools:layout="@layout/fragment_photos" >
         <action
             android:id="@+id/next_action"
             app:destination="@id/destination_home" />
         <argument
             android:name="numOfPhotos"
-            android:defaultValue="0"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/destination_settings"
         android:name="com.example.navigationupdated.SettingsFragment"
-        android:label="Settings"
+        android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
