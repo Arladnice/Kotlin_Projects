@@ -1,7 +1,9 @@
 package com.example.imagesapi
 
+import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ import com.androidnetworking.interfaces.StringRequestListener
 import com.example.imagesapi.Adapter.DogAdapter
 import com.example.imagesapi.Model.DogsApi
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         dogsRV.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
         searchBtn.setOnClickListener{
+
             var name = dogNameText.text.toString()
 
             searchDogs(name)
@@ -54,14 +58,19 @@ class MainActivity : AppCompatActivity() {
                     val result = JSONObject(response)
                     val image = result.getJSONArray("message")
                     for (i in 0 until image.length()){
+                        progressBar2.max = image.length()
+                        val currentProgress = imageList.toString().length
                         val list = image.get(i)
                         imageList.add(
                             DogsApi(list.toString())
                         )
+                        ObjectAnimator.ofInt(progressBar2, "progress", currentProgress)
+                            .setDuration(50000)
+                            .start()
                     }
+
                     dogsRV.adapter = DogAdapter(this@MainActivity, imageList)
                 }
-
                 override fun onError(anError: ANError?) {
                     TODO("Not yet implemented")
                 }

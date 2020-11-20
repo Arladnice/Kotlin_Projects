@@ -16,9 +16,8 @@ class DogAdapter (val context: Context?, private val dogsImages: ArrayList<DogsA
         return ViewHolder(v)
     }
 
-    override fun getItemCount(): Int {
-        return dogsImages.size
-    }
+    override fun getItemCount() = dogsImages.size
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Picasso.get().load(dogsImages[position].message).into(holder.itemView.dogImage)
