@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                             DogsApi(list.toString())
                         )
                         ObjectAnimator.ofInt(progressBar2, "progress", currentProgress)
-                            .setDuration(50000)
+                            .setDuration(5000)
                             .start()
                     }
 

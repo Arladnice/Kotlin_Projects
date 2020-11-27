@@ -15,7 +15,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import kotlin.math.roundToInt
 
-
+//Moshi
 class WeatherResponse(
     @field:Json(name = "timezone") var timezone: String,
     @field:Json(name = "current") var current: Current,
