@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+//    WeakReference
     inner class ImageLoader : AsyncTask<String, Int, ArrayList<Bitmap>>() {
         private val activityRef = WeakReference(MainActivity)
         override fun doInBackground(vararg URL: String?): ArrayList<Bitmap>? {
