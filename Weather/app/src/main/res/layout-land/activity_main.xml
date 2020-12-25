@@ -1,413 +1,428 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id = "@+id/mainLayout_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
     tools:context=".MainActivity"
-    android:background="?attr/colorPrimary">
+    >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="UseSwitchCompatOrMaterialXml">
-
-        </Switch>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="20"
+        android:gravity="center"
+        android:weightSum="100"
+        >
 
         <TextView
-            android:id="@+id/textBar"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:fontFamily="casual"
-            android:text="@string/weather"
-            android:textColor="?attr/primaryTextColor"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toEndOf="@+id/switch1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-        </TextView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayoutMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBar">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutTop"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView14"
+            android:layout_width="fill_parent"
             android:layout_height="0dp"
-            tools:ignore="MissingConstraints">
+            android:text="@string/weather1"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_weight="50"
+            android:gravity="center"
+            tools:ignore="NestedWeights"
+            />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:text="@string/saintp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_weight="25"/>
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:text="@string/day"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_weight="25"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="45"
+        android:gravity="center"
+        android:weightSum="100">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="55"
+            android:clickable="true"
+            android:contentDescription="@string/wicon"
+            android:gravity="center"
+            android:src="@mipmap/sunny"
+            tools:ignore="NestedWeights"
+            tools:srcCompat="@mipmap/sunny"
+            android:focusable="true" />
+
+
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:gravity="center"
+            android:text="@string/_20_c"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:gravity="center"
+            android:text="@string/sunny"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="15"
+        android:weightSum="100"
+        android:baselineAligned="false">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="33"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/humidity"
+                android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/icon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/cloud_sun_128"
-                app:layout_constraintBottom_toTopOf="@+id/textView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </ImageView>
-
-            <TextView
-                android:id="@+id/textView"
-                style="@style/TextView.Primary"
-                android:fontFamily="sans-serif-black"
-                android:text="@string/_33"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toTopOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/icon">
-
-            </TextView>
+                android:id="@+id/imageView4"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/humidity"
+                android:contentDescription="@string/humiditycont"
+                android:src="@mipmap/humidity"
+                />
 
             <TextView
-                android:id="@+id/textView2"
-                style="@style/TextView.Primary"
-                android:text="@string/london_uk_n_sunny"
-                android:textSize="20sp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                android:id="@+id/textView20"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_60"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-            </TextView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutBot"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent=".6"
-            app:layout_constraintHeight_percent="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayoutTop"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="fill_parent"
+            android:layout_weight="33"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayoutBot1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView1">
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/cloud"
+                android:textStyle="bold" />
 
-                <LinearLayout
-                    android:id="@+id/elem1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/radius"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintWidth_percent=".3">
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/unnamed"
+                android:contentDescription="@string/cloudss"
+                android:src="@mipmap/unnamed"
+                />
 
-                    <TextView
-                        android:id="@+id/textViewWindFLow"
-                        style="@style/TextView.Numbers.Horizontal"
-                        android:text="@string/_55" />
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/speed"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/wind_50"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="33"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical">
 
-                    <TextView
-                        style="@style/TextView.Primary.Horizontal"
-                        android:text="@string/wind_flow"/>
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/feels"
+                android:textStyle="bold" />
 
-                </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/bravo"
+                android:src="@mipmap/bravo"
+                android:contentDescription="@string/bravo" />
 
-                <LinearLayout
-                    android:id="@+id/elem2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1"
-                    android:background="?attr/colorAccent"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toEndOf="@+id/elem1"
-                    app:layout_constraintWidth_percent=".4">
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_16_c"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textViewCloudy"
-                        style="@style/TextView.Numbers.Horizontal"
-                        android:text="@string/_30" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/humidity_50" />
-
-                    <TextView
-                        style="@style/TextView.Primary.Horizontal"
-                        android:text="@string/cloudy" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/elem3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/radiusr"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toEndOf="@+id/elem2"
-                    app:layout_constraintWidth_percent=".3">
-
-                    <TextView
-                        android:id="@+id/textViewHumidity"
-                        style="@style/TextView.Numbers.Horizontal"
-                        android:text="@string/_42" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/precipitation_50" />
-
-                    <TextView
-                        style="@style/TextView.Primary.Horizontal"
-                        android:text="@string/humidity" />
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBot1">
-
-                <LinearLayout
-
-                    android:id="@+id/directchild"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="@drawable/radius"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/MD" />
-
-                        <ImageView
-                            android:id="@+id/imgPN"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/sun_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempPN"
-                            style="@style/TextView.Primary"
-                            android:text="@string/_24" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="?attr/colorAccent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/TD" />
-
-                        <ImageView
-                            android:id="@+id/imgVT"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cloud_sun_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempVT"
-                            style="@style/TextView.Primary"
-                            android:text="@string/_14" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="?attr/colorAccent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/WD" />
-
-                        <ImageView
-                            android:id="@+id/imgSR"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cloud_rain_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempSR"
-                            style="@style/TextView.Primary"
-                            android:text="@string/_10" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="?attr/colorAccent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/ThD" />
-
-                        <ImageView
-                            android:id="@+id/imgCT"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cloud_flash_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempCT"
-                            style="@style/TextView.Primary"
-                            android:text="@string/_3" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="?attr/colorAccent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/FD" />
-
-                        <ImageView
-                            android:id="@+id/imgPT"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cloud_sun_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempPT"
-                            style="@style/TextView.Primary"
-                            android:text="@string/_5" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="?attr/colorAccent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/StD" />
-
-                        <ImageView
-                            android:id="@+id/imgSB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cloud_snow_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempSB"
-                            style="@style/TextView.Primary"
-                            android:text="@string/__5" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="2dp"
-                        android:background="@drawable/radiusr"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/TextView.Primary"
-                            android:text="@string/SnD" />
-
-                        <ImageView
-                            android:id="@+id/imgVS"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cloud_snow_64" />
-
-                        <TextView
-                            android:id="@+id/textViewTempVS"
-                            style="@style/TextView.Primary"
-                            android:text="@string/_13" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </HorizontalScrollView>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="20"
+        android:weightSum="100"
+        android:baselineAligned="false">
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/rain"
+                android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/weatheraa"
+                android:src="@mipmap/weatheraa"
+                android:contentDescription="@string/cloud" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_1_pm"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/rain"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/weatheraa"
+                android:src="@mipmap/weatheraa"
+                android:contentDescription="@string/cloud"/>
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_2_pm"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/cloudy"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/cloudsss"
+                android:src="@mipmap/cloudsss"
+                android:contentDescription="@string/cloudsss" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_3_pm"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/cloudy"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/cloudsss"
+                android:src="@mipmap/cloudsss"
+                android:contentDescription="@string/cloudsss"/>
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_4_pm"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="20"
+            android:weightSum="100"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/rain"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                tools:srcCompat="@mipmap/weatheraa"
+                android:src="@mipmap/weatheraa"
+                android:contentDescription="@string/cloud"/>
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="25"
+                android:gravity="center"
+                android:text="@string/_5_pm"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

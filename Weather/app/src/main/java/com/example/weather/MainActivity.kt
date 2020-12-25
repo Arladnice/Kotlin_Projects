@@ -2,165 +2,110 @@ package com.example.weather
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.moshi.Json
-import com.squareup.picasso.Picasso
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import kotlin.math.roundToInt
+import okhttp3.*
+import java.io.IOException
 
 
-class WeatherResponse(
-    @field:Json(name = "timezone") var timezone: String,
-    @field:Json(name = "current") var current: Current,
-    @field:Json(name = "daily") var daily: List<Daily>,
-)
-
-class Current(
-    @field:Json(name = "humidity") var humidity: Int,
-    @field:Json(name = "temp") var temp: Float,
-    @field:Json(name = "clouds") var clouds: Int,
-    @field:Json(name = "wind_speed") var wind_speed: Int,
-    @field:Json(name = "weather") var weather: List<WeatherDescription>,
-)
-
-class Daily(
-    @field:Json(name = "temp") var temp: Temp,
-    @field:Json(name = "weather") var weather: List<WeatherDescription>,
-)
-
-class Temp(
-    @field:Json(name = "day") var day: Float,
-)
-
-class WeatherDescription(
-    @field:Json(name = "main") var main: String,
-    @field:Json(name = "icon") var icon: String,
-)
-
-
-
-@Suppress("UNSAFE_CALL_ON_PARTIALLY_DEFINED_RESOURCE")
+@Suppress("PLUGIN_WARNING", "DEPRECATION", "UNSAFE_CALL_ON_PARTIALLY_DEFINED_RESOURCE")
 class MainActivity : AppCompatActivity() {
-    companion object{
-        const val URL = "https://api.openweathermap.org/data/2.5/"
-    }
-
-    interface OpenWeatherMapService {
-        @GET("onecall?lat=59.937500&lon=30.308611&exclude=minutely,hourly,alerts&units=metric&appid=508af3c89d5fdcb4b9f030cea26e964e")
-        fun listWeather(): Call<WeatherResponse>
-    }
-
-    private var flagTheme = false
-    private val retrofit =
-        Retrofit.Builder()
-            .baseUrl(URL)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-    private val service = retrofit.create(OpenWeatherMapService::class.java)
-    private var call: Call<WeatherResponse>? = service.listWeather()
-
-    @SuppressLint("CommitPrefEdits")
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        savedInstanceState?.let { flagTheme = it.getBoolean("flagTheme") }
-        setTheme(if (flagTheme) R.style.AppThemeLight else R.style.AppThemeDark)
-        setContentView(R.layout.activity_main)
-        switch1.setOnClickListener {
-            flagTheme = !flagTheme
-            recreate()
-        }
-        val prefs = getSharedPreferences("storage", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
-        fun setViewInfo() {
-            textView.text = prefs.getString("textView", "")!!
-            textView2.text = prefs.getString("textView2", "")!!
-            textViewWindFLow.text = prefs.getString("textViewWindFLow", "")!!
-            textViewCloudy.text = prefs.getString("textViewCloudy", "")!!
-            textViewHumidity.text = prefs.getString("textViewHumidity", "")!!
-            textViewTempPN.text = prefs.getString("textViewTempPN", "")!!
-            textViewTempVT.text = prefs.getString("textViewTempVT", "")!!
-            textViewTempSR.text = prefs.getString("textViewTempSR", "")!!
-            textViewTempCT.text = prefs.getString("textViewTempCT", "")!!
-            textViewTempPT.text = prefs.getString("textViewTempPT", "")!!
-            textViewTempSB.text = prefs.getString("textViewTempSB", "")!!
-            textViewTempVS.text = prefs.getString("textViewTempVS", "")!!
+
+        var isLight = prefs.getBoolean("ISLIGHT", true)
+
+
+        if (isLight){
+            theme.applyStyle(R.style.Light, true)
+        } else {
+            theme.applyStyle(R.style.Dark, true)
+        }
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView_main.layoutManager = layoutManager
+
+
+        imageView3.setOnClickListener {
+            isLight = !isLight
+            editor.putBoolean("ISLIGHT", isLight).apply()
+            restartApplication()
+        }
+
+        val url = "https://api.openweathermap.org/data/2.5/onecall?lat=55.75&lon=37.62&units=metric&exclude=current,minutely,daily,alerts&appid=b6e078c82159d758a18b5ae1719b8f3b"
+        if (haveInternet(this)){
+            val request = Request.Builder().url(url).build()
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object: Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body?.string()
+                    editor.putString("body", body).apply()
+                }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    println("Fail to execute request")
+                }
+
+
+            })
+
         }
 
 
-        call?.enqueue(object : Callback<WeatherResponse> {
-            @SuppressLint("SetTextI18n")
-            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
-                if (response.code() == 200) {
-                    val weatherResponse = response.body()!!
-                    editor.putInt("textView", weatherResponse.current.temp.roundToInt()).apply()
-                    val t = weatherResponse.current.temp.roundToInt()
-                    if (t > 0) {
-                        editor.putString("textView", "+${t}°C").apply()
-                    } else {
-                        editor.putString("textView", "-${t}°C").apply()
-                    }
-                    editor.putString("textView2", weatherResponse.timezone + "\n" + weatherResponse.current.weather[0].main).apply()
-                    editor.putString("textViewWindFLow", weatherResponse.current.wind_speed.toString()).apply()
-                    editor.putString("textViewCloudy", weatherResponse.current.clouds.toString()).apply()
-                    editor.putString("textViewHumidity", weatherResponse.current.humidity.toString()).apply()
-                    val icon1 = weatherResponse.current.weather[0].icon
-                    Picasso.get()
-                        .load("https://openweathermap.org/img/wn/$icon1@2x.png")
-                        .fit().centerCrop()
-                        .into(icon)
-                    fun genSaveEveryDay(days: List<Daily>) {
-                        val textViewTempDay = listOf(
-                            "textViewTempPN",
-                            "textViewTempVT",
-                            "textViewTempSR",
-                            "textViewTempCT",
-                            "textViewTempPT",
-                            "textViewTempSB",
-                            "textViewTempVS"
-                        )
-                        days.forEachIndexed { index, day ->
-                            if (index != 0) {
-                                val tempNow = day.temp.day.roundToInt()
-                                if (tempNow >= 0) {
-                                    editor.putString(textViewTempDay[index - 1], "+$tempNow")
-                                } else {
-                                    editor.putString(textViewTempDay[index - 1], "-$tempNow")
-                                }
-                            }
-                        }
-                    }
-                    genSaveEveryDay(weatherResponse.daily)
-                    Log.d("dd", prefs.getString("textViewTempPN", "")!!)
-                }
-                setViewInfo()
+        val body = prefs.getString("body", "")
+
+        if (body != "") {
+            val gson = GsonBuilder().create()
+            val homeFeed = gson.fromJson(body, HomeFeed::class.java)
+
+            textView17.text = homeFeed.hourly[0].temp + " °С"
+            textView24.text = homeFeed.hourly[0].feels_like + " °С"
+            textView20.text = homeFeed.hourly[0].humidity + "%"
+            textView22.text = homeFeed.hourly[0].wind_speed + "m/s"
+            textView18.text = homeFeed.hourly[0].weather[0].main
+
+
+            runOnUiThread {
+                recyclerView_main.adapter = MainAdapter(homeFeed)
             }
+        }
+    }
 
-            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
-                setViewInfo()
+    private fun haveInternet(ctx: MainActivity): Boolean {
+        val info = (ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo
+        var connection = false
+        if (info != null) {
+                connection = info.isConnected
             }
-        })
+        return connection
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
 
-        outState.putBoolean("flagTheme", flagTheme)
+    private fun restartApplication() {
+        val i = Intent(applicationContext, MainActivity::class.java)
+        startActivity(i)
+        finish()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        call?.cancel()
-        call = null
-    }
+    class HomeFeed(val hourly: List<Hours>)
+    class Hours(val dt: Int, val temp: String, val weather: List<Weather>, val feels_like: String, val humidity: String, val wind_speed: String)
+    class Weather(val main: String)
 
 }
+
+
+
